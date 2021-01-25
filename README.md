@@ -1,12 +1,12 @@
 # Music Visualizer
 
 ## Table of Contents
-- [Mission Statement] (#mission-statement)
-- [Features and Requirements List] (#features-and-requirements)
-- [Communications Channels] (#communication-channels)
-- [Developer Guidelines] (#developer-guidelines)
-- [Documentation] (#documentation)
-- [Demos and Screenshots] (#demos-and-screenshots)
+- [Mission Statement](#mission-statement)
+- [Features and Requirements List](#features-and-requirements)
+- [Communications Channels](#communication-channels)
+- [Developer Guidelines](#developer-guidelines)
+- [Documentation](#documentation)
+- [Demos and Screenshots](#demos-and-screenshots)
 
 ## Mission Statement
 This is a free, open-source project designed with the goal to work with Spotify APIs to visualize music as it is played. We will connect to the music streaming platform and will pull the .wav data. The project will evaluate the frequencies using the Fast Fourier Transform and puduce an accompanying image to the beat of the song. 
