@@ -16,7 +16,7 @@ This project utalizes OpenGL and SFML. *Add software features here*
 
 To use this project, you will need to clone this repository using the text below: 
 
-`git clone git@github.com:Clemson-Software-Engineering/Music-Visualizer.git`
+```git clone git@github.com:Clemson-Software-Engineering/Music-Visualizer.git```
 
 *Describe required computing environment*
 
