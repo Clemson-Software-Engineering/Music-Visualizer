@@ -2,8 +2,8 @@
 
 ## Table of Contents
 - [Mission Statement](#mission-statement)
-- [Features and Requirements List](#features-and-requirements)
-- [Communications Channels](#communication-channels)
+- [Features and Requirements List](#features-and-requirements-list)
+- [Communications Channels](#communications-channels)
 - [Developer Guidelines](#developer-guidelines)
 - [Documentation](#documentation)
 - [Demos and Screenshots](#demos-and-screenshots)
