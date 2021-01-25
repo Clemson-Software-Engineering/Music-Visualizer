@@ -38,5 +38,5 @@ There is not yet an established community chat for this project. In the meantime
 All contributions, issues, bug reports or fixes, documentation improvements, and other enhancements are welcome. 
 *How much technical experience you need, describe thoroughly the setup of the software. Give a tutorial about how to do a common task with the software. Identify the projects shortcomings and how you would like to move forward with them.*
 
-## Demos, Screenshots, Videos, Example Output
+## Demos and Screenshots
 *Put samples of the GUI*
