@@ -20,9 +20,9 @@ To use this project, you will need to clone this repository using the text below
 git clone git@github.com:Clemson-Software-Engineering/Music-Visualizer.git
 ```
 
-*Describe required computing environment*
+Tp run this project, you need a C++ compiler and command line interface.  
 
-*Add development status*
+*This project is currently still under development and V1 is not yet ready.*
 
 ## Communications Channels
 There is not yet an established community chat for this project. In the meantime, if you have questions, comments, or concerns, please email one of the admins below: 
@@ -32,11 +32,11 @@ There is not yet an established community chat for this project. In the meantime
 - Conner Schmidt: cwschmi@clemson.edu
 
 ## Developer Guidelines
-*Explain how the developers interact with each other and with the users, and ultimately how things get done.*
+Admin will check the site in a weekly basis to ensure reporting is kept up. Should you need to reach the amdmin, please use one of the emails listed above. We hope to have a designated community chat environment soon.  
+Upon an addition to the project, your code will be reviewed before an admin responds to you. If it is accepted, your push will be merged. If not, we will explain why and what needs to be cnahged before you submit code again.
 
 ## Documentation
 All contributions, issues, bug reports or fixes, documentation improvements, and other enhancements are welcome. 
-*How much technical experience you need, describe thoroughly the setup of the software. Give a tutorial about how to do a common task with the software. Identify the projects shortcomings and how you would like to move forward with them.*
 
 ## Demos and Screenshots
-*Put samples of the GUI*
+GUI Samples and Demos will be placed here when V1 is deployed.
