@@ -12,7 +12,7 @@
 This is a free, open-source project designed with the goal to work with Spotify APIs to visualize music as it is played. We will connect to the music streaming platform and will pull the .wav data. The project will evaluate the frequencies using the Fast Fourier Transform and produce an accompanying image to the beat of the song. 
 
 ## Features and Requirements List
-This project utilizes OpenGL and SFML. *Add software features here*
+This project utilizes OpenGL and SFML.
 
 To use this project, you will need to clone this repository using the text below: 
 
