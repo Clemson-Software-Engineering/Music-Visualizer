@@ -33,6 +33,7 @@ There is not yet an established community chat for this project. In the meantime
 
 ## Developer Guidelines
 Admin will check the site in a weekly basis to ensure reporting is kept up. Should you need to reach the amdmin, please use one of the emails listed above. We hope to have a designated community chat environment soon.  
+  
 Upon an addition to the project, your code will be reviewed before an admin responds to you. If it is accepted, your push will be merged. If not, we will explain why and what needs to be cnahged before you submit code again.
 
 ## Documentation
