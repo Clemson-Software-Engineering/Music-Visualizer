@@ -39,5 +39,7 @@ Upon an addition to the project, your code will be reviewed before an admin resp
 ## Documentation
 All contributions, issues, bug reports or fixes, documentation improvements, and other enhancements are welcome. 
 
+For the time being, please hold off on contributing to this repository as we are working on it until May 2021 for a graded project. 
+
 ## Demos and Screenshots
 GUI Samples and Demos will be placed here when V1 is deployed.
