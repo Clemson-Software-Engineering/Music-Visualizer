@@ -4,10 +4,10 @@
 // Constructor
 Graph::Graph(){
 
-};
+}
 
 // Destructor
 Graph::~Graph(){
 
-};
+}
 
