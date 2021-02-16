@@ -1,13 +1,13 @@
-#include "graph.h"
+#include "ftt.h"
 #include <stdlib.h>
 
 // Constructor
-Graph::Graph(){
+FTT::FTT(){
 
 }
 
 // Destructor
-Graph::~Graph(){
+FTT::~FTT(){
 
 }
 

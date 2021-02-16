@@ -1,13 +1,13 @@
 // Main Program
 
-#include "graph.h"
-#include <stdlib.h>
+#include "ftt.h"
+#include <GLFW/glfw3.h>
 
 using namespace std;
 
-int main(){
+int main(int argc, char* argv[]){
 
 
 
-    
+    return 0;
 }
