@@ -1,7 +1,7 @@
 // Main Program
 
 #include "ftt.h"
-#include <GLFW/glfw3.h>
+#include "../GLFW/glfw3.h"
 
 using namespace std;
 
