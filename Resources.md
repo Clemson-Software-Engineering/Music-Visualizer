@@ -1,10 +1,13 @@
 # Resources
 
 ## Table of Contents
-- [Xojo](#Xojo)
+- [GUI](#GUI)
+- [SpotifyAPI](#SpotifyAPI)
 
 ## GUI
-Explaination: https://stackoverflow.com/questions/252514/create-a-cross-platform-windows-mac-os-x-application
-Download: https://www.xojo.com 
-Binary file can be found in the head folder of the repository. 
+GLUT Library:http://freeglut.sourceforge.net
+Examples: https://www3.ntu.edu.sg/home/ehchua/programming/opengl/HowTo_OpenGL_C.html
 
+## SpotifyAPI
+Spotify web api node
+Github: https://github.com/thelinmichael/spotify-web-api-node
