@@ -1,11 +1,4 @@
-#define GL_SILENCE_DEPRECATION
-#include "GL/glut.h"
-#include <iostream>
-
-void render(void);
-void text(void);
-void keyboard(unsigned char c, int x, int y);
-void mouse(int button, int state, int x, int y);
+#include "display.h"
 
 // main creates the window and calls render()
 int main(int argc, char** argv) {
@@ -45,6 +38,7 @@ void text(int x, int y, float r, float g, float b, char* string) {
   int j = strlen(string);
   glColor3f(r, g, b);
   glRasterPos2f(x, y);
+  // load string one char at a time
   for(int i = 0; i < j; i++) {
     glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, string[i]);
   }
@@ -52,10 +46,19 @@ void text(int x, int y, float r, float g, float b, char* string) {
 
 // controls what happens on the window in this function
 void render(void) {
+  // window sizes for x,y coordinates
+  int const w = glutGet(GLUT_WINDOW_WIDTH);
+  int const h = glutGet(GLUT_WINDOW_HEIGHT);
+  // clear screen
   glClear(GL_COLOR_BUFFER_BIT);
-
+  // prepare screen for loading of text
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+  gluOrtho2D(0, w, h, 0);
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+  // load text
   char string[] = {"hello world"};
-  text(100, 100, 255, 255, 255, string);
-
-  glFlush();
+  text(100.0, 100.0, 255.0, 255.0, 255.0, string);
+  glutSwapBuffers();
 }
