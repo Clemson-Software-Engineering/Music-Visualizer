@@ -5,7 +5,7 @@ compile-display:
 	g++ display.cpp -framework OpenGL -framework GLUT
 
 run:
-	./a.out
+	./a.out 
 
 clean:
 	rm ./main ./a.out
