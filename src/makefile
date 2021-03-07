@@ -1,11 +1,11 @@
 all:
-	g++ main.cpp -o main
+	g++ display.cpp -framework OpenGL -framework GLUT
 
 compile-display:
 	g++ display.cpp -framework OpenGL -framework GLUT
 
 run:
-	./main
+	./a.out
 
 clean:
 	rm ./main ./a.out
