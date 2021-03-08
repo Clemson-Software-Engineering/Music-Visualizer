@@ -16,3 +16,6 @@ Github: https://github.com/thelinmichael/spotify-web-api-node
 ## FFT
 Mark Borderding's FFT Library: https://github.com/mborgerding/kissfft
 Each file is copyrighted, files are not to be changed.
+
+## SFML
+Audio buffer: https://www.sfml-dev.org/tutorials/2.5/audio-sounds.php

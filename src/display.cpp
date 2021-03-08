@@ -2,15 +2,57 @@
 
 using namespace std;
 
+vector<int> amps(0);
+vector<int> freq(0);
+
 string filename;
-kiss_fft_cpx in[10], out[10];
 
-// void getFFT(const kiss_fft_cpx* in, kiss_fft_cpx* out){
-//   kiss_fft_cfg cfg;
-//   kiss_fft(cfg, in, out);
-//   free(cfg);
-// }
+kiss_fft_cpx in[N], out[N];
 
+//Sound buffers from SMFL
+// sf::SoundBuffer buffer;
+// sf::Sound sound(buffer);
+
+//Get the FFT of the wav
+void getFFT(const kiss_fft_cpx in[N], kiss_fft_cpx out[N]){
+  kiss_fft_cfg cfg;
+  //kiss_fft(cfg, in, out); //returning linker error
+  free(cfg);
+}
+
+void init_vis(){
+  glEnable(GL_DEPTH_TEST);
+  glDepthFunc(GL_LEQUAL);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+  glEnable(GL_BLEND);
+  glEnable(GL_POINT_SMOOTH);
+  glEnable(GL_LINE_SMOOTH);
+  glEnable(GL_MULTISAMPLE);
+  glEnable(GL_POLYGON_SMOOTH);
+}
+
+void load_data(){
+
+  //  if (!buffer.loadFromFile(filename.c_str())){
+  //    exit(0);
+  //  } 
+
+  vector<int>::iterator amp_iteration = amps.begin();
+  vector<int>::iterator freq_iteration = freq.begin();
+
+  double sampleRate = 1.0;//buffer.getSampleRate();
+  double sampleCount = 1.0;//buffer.getSampleCount();
+  auto samples = 1.0;//buffer.getSamples();
+
+  vector<double> data;
+  for (int i = 0; i < (int)sampleCount; i++){
+    //data.push_back((double)samples[i])
+  }
+
+  int frameNum = 0;
+
+
+}
 
 // Controls keyboard inputs
 void keyboard(unsigned char c, int x, int y) {
@@ -66,7 +108,7 @@ void render(void) {
 int main(int argc, char** argv) {
 
   if (argc < 2){
-    printf("Usage: wave_iteration <FILENAME>\n");
+    printf("Usage: ./a.out <FILENAME>\n");
     return 1;
   } 
 
@@ -85,6 +127,9 @@ int main(int argc, char** argv) {
   // Add keyboard and mouse functionality
   glutKeyboardFunc(keyboard);
   glutMouseFunc(mouse);
+
+  //Initalize the vizualizer
+  init_vis();
   
   // Initiates the GLUT code, opens window
   glutMainLoop();
