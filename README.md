@@ -12,7 +12,7 @@
 This is a free, open-source project designed with the goal to work with Spotify APIs to visualize music as it is played. We will connect to the music streaming platform and will pull the .wav data. The project will evaluate the frequencies using the Fast Fourier Transform and produce an accompanying image to the beat of the song. 
 
 ## Features and Requirements List
-This project utilizes OpenGL and SFML.
+This project utilizes the Web Audio API. 
 
 To use this project, you will need to clone this repository using the text below: 
 
@@ -20,7 +20,7 @@ To use this project, you will need to clone this repository using the text below
 git clone git@github.com:Clemson-Software-Engineering/Music-Visualizer.git
 ```
 
-Tp run this project, you need a C++ compiler and command line interface.  
+To run this project, you need a web browser capable of handling Javascript and HTML.   
 
 *This project is currently still under development and V1 is not yet ready.*
 
