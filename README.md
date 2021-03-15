@@ -9,7 +9,7 @@
 - [Demos and Screenshots](#demos-and-screenshots)
 
 ## Mission Statement
-This is a free, open-source project designed with the goal to work with Spotify APIs to visualize music as it is played. We will connect to the music streaming platform and will pull the .wav data. The project will evaluate the frequencies using the Fast Fourier Transform and produce an accompanying image to the beat of the song. 
+This is a free, open-source project designed with the goal to work with Spotify APIs to visualize music as it is played. We will connect to the music streaming platform and will pull the .mp3 data. The project will evaluate the media frequencies, convert them into a more useable form of data, and output them onto the screen in a graph form to visualize the data. 
 
 ## Features and Requirements List
 This project utilizes the Web Audio API. 
