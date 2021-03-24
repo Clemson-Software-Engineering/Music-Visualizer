@@ -1,67 +1,69 @@
-window.onload = () => {
-  // register button from html page
-  var buttonElement = document.getElementById('play');
-  // Set up audio context
-  window.AudioContext = window.AudioContext || window.webkitAudioContext;
+var audioContext;
+var canvas, canvasContext;
+var analyser, audioSourceNode;
+var freqBinCount, bufferSize;
+var barWidth, barHeight;
+var multiplier = 6;
+var cutoff = 150;
 
-  const audioContext = new AudioContext();
-  let currentBuffer = null;
+const WIDTH = 1200, HEIGHT = 512;
 
-  // start visualizer on click of button
-  buttonElement.onclick = function() {
-    getAudioContext().resume();
-  }
+window.onload = function() {
+	canvas = document.getElementById("main-canvas");
+	canvasContext = canvas.getContext("2d");
 
-  const visualizeAudio = url => {
-    fetch(url)
-      .then(response => response.arrayBuffer())
-      .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
-      .then(audioBuffer => visualize(audioBuffer));
-  };
+	if ((window.File || window.FileReader || window.FileList || window.Blob) == false) {
+		alert("Browser does not support the File API.");
+	}
+}
 
-  const filterData = audioBuffer => {
-    const rawData = audioBuffer.getChannelData(0); // We only need to work with one channel of data
-    const samples = 70; // Number of samples we want to have in our final data set
-    const blockSize = Math.floor(rawData.length / samples); // the number of samples in each subdivision
-    const filteredData = [];
-    for (let i = 0; i < samples; i++) {
-      let blockStart = blockSize * i; // the location of the first sample in the block
-      let sum = 0;
-      for (let j = 0; j < blockSize; j++) {
-        sum = sum + Math.abs(rawData[blockStart + j]) // find the sum of all the samples in the block
-      }
-      filteredData.push(sum / blockSize); // divide the sum by the block size to get the average
-    }
-    return filteredData;
-  }
+function Visualize(){
+	if (audioSourceNode){
+		audioSourceNode.stop();
+	}
+	audioContext = new AudioContext();
+	var input = document.getElementById("audio-file");
+	var file = input.files[0];
+	var fr = new FileReader();
+	fr.readAsArrayBuffer(file);
+	fr.onload = function() {
+			var audioData = fr.result;
+			console.log(audioData);
+			audioContext.decodeAudioData(audioData).then(function(decodedData) {
+				console.log(decodedData);
+				audioSourceNode = new AudioBufferSourceNode(audioContext);
+				audioSourceNode.buffer = decodedData;
+				audioSourceNode.start();
+				AnalyseAudio(audioSourceNode);
+		});
+	}
+}
 
-  const normalizeData = filteredData => {
-    const multiplier = Math.pow(Math.max(...filteredData), -1);
-    return filteredData.map(n => n * multiplier);
-  }
+function AnalyseAudio(audioSourceNode) {
+	bufferSize = 4096;
+	freqBinCount = bufferSize / 2;
+	analyser = new AnalyserNode(audioContext);
+	analyser.fftSize = bufferSize;
+	analyser.smoothingTimeConstant = 0.85;
 
-  const draw = normalizedData => {
-    // Set up the canvas
-    const canvas = document.querySelector("canvas");
-    const dpr = window.devicePixelRatio || 1;
-    const padding = 20;
-    canvas.width = canvas.offsetWidth * dpr;
-    canvas.height = (canvas.offsetHeight + padding * 2) * dpr;
-    const ctx = canvas.getContext("2d");
-    ctx.scale(dpr, dpr);
-    ctx.translate(0, canvas.offsetHeight / 2 + padding); // Set Y = 0 to be in the middle of the canvas
+	audioSourceNode.connect(analyser);
+	analyser.connect(audioContext.destination);
 
-    // draw the line segments
-    const width = canvas.offsetWidth / normalizedData.length;
-    for (let i = 0; i < normalizedData.length; i++) {
-      const x = width * i;
-      let height = normalizedData[i] * canvas.offsetHeight - padding;
-      if (height < 0) {
-          height = 0;
-      } else if (height > canvas.offsetHeight / 2) {
-          height = height > canvas.offsetHeight / 2;
-      }
-      drawLineSegment(ctx, x, height, width, (i + 1) % 2);
-    }
-  };
+	console.log(analyser);
+	dataArray = new Float32Array(bufferSize / 2);
+	window.requestAnimationFrame(Draw);
+}
+
+function Draw() {
+	window.requestAnimationFrame(Draw);
+	analyser.getFloatFrequencyData(dataArray);
+	canvasContext.fillStyle = "#33cc33";
+	barWidth = WIDTH / freqBinCount;
+	var x = 0;
+	canvasContext.clearRect(0, 0, WIDTH, HEIGHT);
+	for (var i = 0; i < freqBinCount; i++) {
+		barHeight = ((256 + dataArray[i]) - cutoff) * multiplier;
+		canvasContext.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
+		x += barWidth;
+	}
 }

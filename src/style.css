@@ -1,0 +1,32 @@
+body {
+  background-color: #1a1a1a;
+  margin-left: auto;
+  margin-right: auto;
+  width: 1200px;
+  color: white;
+  text-align: center;
+}
+
+.canvas-wrapper {
+  position: relative;
+  /*border: 1px solid red;*/
+  box-sizing: border-box;
+}
+
+.dragndrop-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /*border: 1px solid green;*/
+  box-sizing: border-box;
+}
+
+#main-canvas {
+  width: 1200px;
+  height: 512px;
+  /*border: 1px solid blue;*/
+  background-color:#1a1a1a;
+  box-sizing: border-box;
+}
