@@ -5,6 +5,7 @@ var freqBinCount, bufferSize;
 var barWidth, barHeight;
 var multiplier = 6;
 var cutoff = 150;
+var colors = [];
 
 const WIDTH = 1200, HEIGHT = 512;
 
@@ -15,6 +16,14 @@ window.onload = function() {
 	if ((window.File || window.FileReader || window.FileList || window.Blob) == false) {
 		alert("Browser does not support the File API.");
 	}
+
+  while (colors.length < 100) {
+    do {
+        var color = Math.floor((Math.random()*1000000)+1);
+    } while (colors.indexOf(color) >= 0);
+    colors.push("#" + ("000000" + color.toString(16)).slice(-6));
+  }
+  colors = ["#21B6A8", "#CBFFFA", "#7F1917", "#FFD197"]
 }
 
 function Visualize(){
@@ -55,15 +64,21 @@ function AnalyseAudio(audioSourceNode) {
 }
 
 function Draw() {
+
+  // d3 = require("d3@6")
+
+  // const colorScale = d3.scale.category10();
+
 	window.requestAnimationFrame(Draw);
 	analyser.getFloatFrequencyData(dataArray);
-	canvasContext.fillStyle = "#33cc33";
-	barWidth = WIDTH / freqBinCount;
+	// canvasContext.fillStyle = "#33cc33";
+	barWidth = (WIDTH / freqBinCount)*10;
 	var x = 0;
 	canvasContext.clearRect(0, 0, WIDTH, HEIGHT);
 	for (var i = 0; i < freqBinCount; i++) {
 		barHeight = ((256 + dataArray[i]) - cutoff) * multiplier;
 		canvasContext.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
+    canvasContext.fillStyle = 'rgb(' + (Math.floor((barHeight/HEIGHT)*255)) + ', ' +(Math.floor((barHeight/HEIGHT)*255)) + ', ' + (Math.floor((barHeight/HEIGHT)*255)) +')';
 		x += barWidth;
 	}
 }

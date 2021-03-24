@@ -29,7 +29,6 @@ There is not yet an established community chat for this project. In the meantime
 - John Michael Hayde: jhayde@clemson.edu
 - Clare DuVal: ckduval@clemson.edu
 - John Michael Zarnowski: jzarnow@clemson.edu
-- Conner Schmidt: cwschmi@clemson.edu
 
 ## Developer Guidelines
 Admin will check the site in a weekly basis to ensure reporting is kept up. Should you need to reach the amdmin, please use one of the emails listed above. We hope to have a designated community chat environment soon.  
