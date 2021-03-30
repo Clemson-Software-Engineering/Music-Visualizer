@@ -78,7 +78,7 @@ function Draw() {
 	for (var i = 0; i < freqBinCount; i++) {
 		barHeight = ((256 + dataArray[i]) - cutoff) * multiplier;
 		canvasContext.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
-    canvasContext.fillStyle = 'rgb(' + (Math.floor((barHeight/HEIGHT)*255)) + ', ' +(Math.floor((barHeight/HEIGHT)*255)) + ', ' + (Math.floor((barHeight/HEIGHT)*255)) +')';
+    	canvasContext.fillStyle = 'rgb(' + (Math.floor((barHeight/HEIGHT)*255)) + ', ' +(Math.floor((barHeight/HEIGHT)*255)) + ', ' + (Math.floor((barHeight/HEIGHT)*255)) +')';
 		x += barWidth;
 	}
 }
