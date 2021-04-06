@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Music Visualizer</title>
+        <script type="text/jscript" src="../vis.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <script type="text/javascript" src="https://ajax.microsoft.com/ajax/jQuery/jquery-1.4.2.min.js"></script>
+        <style type="text/css">
+            img {
+              border-radius: 50%;
+            }
+            #login, #loggedin {
+              display: none;
+            }
+            .text-overflow {
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              width: 500px;
+            }
+          </style>
+    </head>
+    <body>
+              <h1>Visualizer</h1>
+
+              <div class="container">
+                <div id="login">
+                  <a href="/login" class="btn btn-primary">Log in with Spotify</a>
+                </div>
+                <div id="loggedin">
+                  <div id="user-profile">
+                  </div>
+                  <div id="oauth">
+                  </div>
+                </div>
+              </div>
+
+              <input class="buttons" id="audio-file" type="file" accept="media/*" name="Upload">
+              
+              <br>
+              <br>
+
+              <button class="buttons" id="start-button" onclick="Visualize()">Visualize!</button>
+
+              <canvas id="main-canvas" width="1200" height="512"></canvas>
+
+              <script id="user-profile-template" type="text/x-handlebars-template">
+                <div class="media">
+                  <div class="pull-left">
+                    <img class="media-object" width="50" src="{{images.0.url}}" /><h4 class="clearfix">Welcome, {{display_name}}!</h4>
+                  </div>
+                </div>
+              </script>
+          
+              <script id="oauth-template" type="text/x-handlebars-template">
+                <dl class="dl-horizontal">
+                </dl>
+              </script>
+
+
+
+              <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
+              <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+              <script>
+                (function() {
+          
+                  /**
+                   * Obtains parameters from the hash of the URL
+                   * @return Object
+                   */
+                  function getHashParams() {
+                    var hashParams = {};
+                    var e, r = /([^&;=]+)=?([^&;]*)/g,
+                        q = window.location.hash.substring(1);
+                    while ( e = r.exec(q)) {
+                       hashParams[e[1]] = decodeURIComponent(e[2]);
+                    }
+                    return hashParams;
+                  }
+          
+                  var userProfileSource = document.getElementById('user-profile-template').innerHTML,
+                      userProfileTemplate = Handlebars.compile(userProfileSource),
+                      userProfilePlaceholder = document.getElementById('user-profile');
+          
+                  var oauthSource = document.getElementById('oauth-template').innerHTML,
+                      oauthTemplate = Handlebars.compile(oauthSource),
+                      oauthPlaceholder = document.getElementById('oauth');
+          
+                  var params = getHashParams();
+          
+                  var access_token = params.access_token,
+                      refresh_token = params.refresh_token,
+                      error = params.error;
+          
+                  if (error) {
+                    alert('There was an error during the authentication');
+                  } else {
+                    if (access_token) {
+                      // render oauth info
+                      oauthPlaceholder.innerHTML = oauthTemplate({
+                        access_token: access_token,
+                        refresh_token: refresh_token
+                      });
+          
+                      $.ajax({
+                          url: 'https://api.spotify.com/v1/me',
+                          headers: {
+                            'Authorization': 'Bearer ' + access_token
+                          },
+                          success: function(response) {
+                            userProfilePlaceholder.innerHTML = userProfileTemplate(response);
+          
+                            $('#login').hide();
+                            $('#loggedin').show();
+                          }
+                      });
+                    } else {
+                        // render initial screen
+                        $('#login').show();
+                        $('#loggedin').hide();
+                    }
+          
+                    document.getElementById('obtain-new-token').addEventListener('click', function() {
+                      $.ajax({
+                        url: '/refresh_token',
+                        data: {
+                          'refresh_token': refresh_token
+                        }
+                      }).done(function(data) {
+                        access_token = data.access_token;
+                        oauthPlaceholder.innerHTML = oauthTemplate({
+                          access_token: access_token,
+                          refresh_token: refresh_token
+                        });
+                      });
+                    }, false);
+                  }
+                })();
+              </script>
+                  
+    </body>
+</html>
