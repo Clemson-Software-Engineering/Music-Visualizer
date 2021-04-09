@@ -6,6 +6,8 @@ var barWidth, barHeight;
 var multiplier = 6;
 var cutoff = 150;
 var colors = [];
+// color type, value comes from inpute field on HTML page
+var type = 0;
 
 const WIDTH = 1200, HEIGHT = 512;
 
@@ -27,6 +29,14 @@ window.onload = function() {
 }
 
 function Visualize(){
+	// get color type
+	var radios = document.getElementsByName('colors')
+	for (var i = 0, length = radios.length; i < length; i++) {
+		// only want the checked value
+		if (radios[i].checked) {
+			type = radios[i].value;
+		}
+	}
 	if (audioSourceNode){
 		audioSourceNode.stop();
 	}
@@ -75,10 +85,32 @@ function Draw() {
 	barWidth = (WIDTH / freqBinCount)*10;
 	var x = 0;
 	canvasContext.clearRect(0, 0, WIDTH, HEIGHT);
-	for (var i = 0; i < freqBinCount; i++) {
-		barHeight = ((256 + dataArray[i]) - cutoff) * multiplier;
-		canvasContext.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
-    	canvasContext.fillStyle = 'rgb(' + (Math.floor((barHeight/HEIGHT)*255)) + ', ' +(Math.floor((barHeight/HEIGHT)*255)) + ', ' + (Math.floor((barHeight/HEIGHT)*255)) +')';
-		x += barWidth;
+	// display proper pattern based on color selection
+	// type0 is black and white
+	if (type == 0) {
+		for (var i = 0; i < freqBinCount; i++) {
+			barHeight = ((256 + dataArray[i]) - cutoff) * multiplier;
+			canvasContext.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
+	    canvasContext.fillStyle = 'rgb(' + (Math.floor((barHeight/HEIGHT)*255)) + ', ' +(Math.floor((barHeight/HEIGHT)*255)) + ', ' + (Math.floor((barHeight/HEIGHT)*255)) +')';
+			x += barWidth;
+		}
+	}
+	// type 1 is rainbow
+	else if (type == 1) {
+		for (var i = 0; i < freqBinCount; i++) {
+			barHeight = ((256 + dataArray[i]) - cutoff) * multiplier;
+			canvasContext.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
+			canvasContext.fillStyle = 'rgb(' + (Math.floor(Math.random() * 256)) + ', ' +(Math.floor(Math.random() * 256)) + ', ' + (Math.floor(Math.random() * 256)) +')';
+			x += barWidth;
+		}
+	}
+	// type 2 is blue
+	else {
+		canvasContext.fillStyle = '#467bc7';
+		for (var i = 0; i < freqBinCount; i++) {
+			barHeight = ((256 + dataArray[i]) - cutoff) * multiplier;
+			canvasContext.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
+			x += barWidth;
+		}
 	}
 }

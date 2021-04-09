@@ -13,12 +13,17 @@
               <h1>Visualizer</h1>
               <input class="buttons" id="audio-file" type="file" accept="media/*" name="Upload">
               <br><br>
+              <label for="display_color">Color: </label>
+              <input type="radio" name="colors" value="0" checked="checked">Black and White</input>
+              <input type="radio" name="colors" value="1">Rainbow</input>
+              <input type="radio" name="colors" value="2">Blue</input>
+              <br><br>
               <button class="buttons" id="start-button" onclick="Visualize()">Visualize!</button>
 
-              
+
               <canvas id="main-canvas" width="1200" height="512"></canvas>
 
-              
-                  
+
+
     </body>
 </html>
