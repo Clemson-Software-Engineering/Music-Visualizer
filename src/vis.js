@@ -8,6 +8,10 @@ var cutoff = 150;
 var colors = [];
 // color type, value comes from inpute field on HTML page
 var type = 0;
+var dur;
+
+// var Spotify = require('spotify-web-api-js');
+// var s = new Spotify();
 
 const WIDTH = 1200, HEIGHT = 512;
 
@@ -47,6 +51,7 @@ function Visualize(){
 	fr.readAsArrayBuffer(file);
 	fr.onload = function() {
 			var audioData = fr.result;
+			
 			console.log(audioData);
 			audioContext.decodeAudioData(audioData).then(function(decodedData) {
 				console.log(decodedData);
@@ -75,25 +80,23 @@ function AnalyseAudio(audioSourceNode) {
 
 function Draw() {
 
-  // d3 = require("d3@6")
-
-  // const colorScale = d3.scale.category10();
-
 	window.requestAnimationFrame(Draw);
 	analyser.getFloatFrequencyData(dataArray);
-	// canvasContext.fillStyle = "#33cc33";
 	barWidth = (WIDTH / freqBinCount)*10;
 	var x = 0;
 	canvasContext.clearRect(0, 0, WIDTH, HEIGHT);
+
+
 	// display proper pattern based on color selection
 	// type0 is black and white
 	if (type == 0) {
 		for (var i = 0; i < freqBinCount; i++) {
 			barHeight = ((256 + dataArray[i]) - cutoff) * multiplier;
 			canvasContext.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
-	    canvasContext.fillStyle = 'rgb(' + (Math.floor((barHeight/HEIGHT)*255)) + ', ' +(Math.floor((barHeight/HEIGHT)*255)) + ', ' + (Math.floor((barHeight/HEIGHT)*255)) +')';
+	    	canvasContext.fillStyle = 'rgb(' + (Math.floor((barHeight/HEIGHT)*255)) + ', ' +(Math.floor((barHeight/HEIGHT)*255)) + ', ' + (Math.floor((barHeight/HEIGHT)*255)) +')';
 			x += barWidth;
 		}
+		// ProgressBar();
 	}
 	// type 1 is rainbow
 	else if (type == 1) {
@@ -103,6 +106,7 @@ function Draw() {
 			canvasContext.fillStyle = 'rgb(' + (Math.floor(Math.random() * 256)) + ', ' +(Math.floor(Math.random() * 256)) + ', ' + (Math.floor(Math.random() * 256)) +')';
 			x += barWidth;
 		}
+		// ProgressBar();
 	}
 	// type 2 is blue
 	else {
@@ -112,5 +116,14 @@ function Draw() {
 			canvasContext.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
 			x += barWidth;
 		}
+		// ProgressBar();
 	}
 }
+
+// function ProgressBar(){
+   
+// 	var currentTime = analyser.currentTime;
+// 	var duration = analyser.duration;
+// 	$('.hp_range').stop(true,true).animate({'width':(currentTime +.25)/duration*100+'%'},250,'linear');
+// 	console.log(duration)
+// }

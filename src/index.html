@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <title>Music Visualizer</title>
         <script type="text/javascript" src="vis.js"></script>
-        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" type="text/css" href="style.css">
         <script type="text/javascript" src="https://ajax.microsoft.com/ajax/jQuery/jquery-1.4.2.min.js"></script>
         <style type="text/css">
             img {
@@ -20,14 +20,26 @@
               white-space: nowrap;
               width: 500px;
             }
+            .hp_slide{
+                width:100%;
+                background:white;
+                height:25px;
+            }
+            .hp_range{
+                width:0;
+                background:black;
+                height:25px;
+            }
           </style>
     </head>
     <body>
+
               <h1>Visualizer</h1>
 
               <div class="container">
                 <div id="login">
                   <a href="/login" class="btn btn-primary">Log in with Spotify</a>
+                  <br><br>
                 </div>
                 <div id="loggedin">
                   <div id="user-profile">
@@ -45,7 +57,6 @@
                 });
               </script>
 
-              <h1>Visualizer</h1>
               <input class="buttons" id="audio-file" type="file" accept="media/*" name="Upload">
               <br><br>
               <label for="display_color">Color: </label>
@@ -57,6 +68,11 @@
 
 
               <canvas id="main-canvas" width="1200" height="512"></canvas>
+
+              <div class="hp_slide">
+                <div class="hp_range"></div>
+              </div>
+
 
               <script id="user-profile-template" type="text/x-handlebars-template">
                 <div class="media">
