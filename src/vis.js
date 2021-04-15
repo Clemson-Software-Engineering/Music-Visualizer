@@ -45,13 +45,28 @@ function Visualize(){
 		audioSourceNode.stop();
 	}
 	audioContext = new AudioContext();
+	// play/pause logic
+	// change audioContext and button textContent on button click
+	var playpauseBBtn = document.getElementById('playpause')
+	playpauseBBtn.onclick = function() {
+		if(audioContext.state === 'running') {
+			audioContext.suspend().then(function() {
+				playpauseBBtn.textContent = 'Resume';
+			});
+		}
+		else if(audioContext.state === 'suspended') {
+			audioContext.resume().then(function() {
+				playpauseBBtn.textContent = 'Pause';
+			});
+		}
+	}
 	var input = document.getElementById("audio-file");
 	var file = input.files[0];
 	var fr = new FileReader();
 	fr.readAsArrayBuffer(file);
 	fr.onload = function() {
 			var audioData = fr.result;
-			
+
 			console.log(audioData);
 			audioContext.decodeAudioData(audioData).then(function(decodedData) {
 				console.log(decodedData);
@@ -121,7 +136,7 @@ function Draw() {
 }
 
 // function ProgressBar(){
-   
+
 // 	var currentTime = analyser.currentTime;
 // 	var duration = analyser.duration;
 // 	$('.hp_range').stop(true,true).animate({'width':(currentTime +.25)/duration*100+'%'},250,'linear');
