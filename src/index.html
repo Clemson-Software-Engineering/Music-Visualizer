@@ -6,8 +6,22 @@
         <title>Music Visualizer</title>
         <script type="text/javascript" src="vis.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css">
+
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+
+
         <script type="text/javascript" src="https://ajax.microsoft.com/ajax/jQuery/jquery-1.4.2.min.js"></script>
         <style type="text/css">
+
+
+	    body {
+		background: rgb(25, 20, 20);
+		color: rgb(30, 215, 96);
+		font-family: 'proxima-nova', sans-serif;
+	    }
+
+
             img {
               border-radius: 50%;
             }
@@ -34,7 +48,38 @@
     </head>
     <body>
 
-              <h1>Visualizer</h1>
+
+	<div class="container-fluid">
+	    <div class="row align-self-start">
+		<div class="col-lg-1">
+		    <h1>
+			<img src="media/spotify.png" alt="Spotify">
+		    </h1>
+		</div>
+		<div class="col-lg-6">
+		    <h1>
+			Search Bar Here
+		    </h1>
+	    	</div>
+	    	<div class="col-lg-5">
+		    <input class="buttons" id="audio-file" type="file" accept="media/*" name="Upload">
+	    	</div>
+	    </div>
+	    <div class="row">
+		<div class="col-lg-1">
+		    <h6>
+			<label for="display_color">Color: </label>
+			<br>
+			<input type="radio" name="colors" value="0" checked="checked">Black & White</input>
+			<br>
+			<input type="radio" name="colors" value="1">Rainbow</input>
+			<br>
+			<input type="radio" name="colors" value="2">Blue</input>
+		    </h6>
+		</div>
+	    </div>
+	</div>
+
 
               <div class="container">
                 <div id="login">
@@ -57,13 +102,7 @@
                 });
               </script>
 
-              <input class="buttons" id="audio-file" type="file" accept="media/*" name="Upload">
-              <br><br>
-              <label for="display_color">Color: </label>
-              <input type="radio" name="colors" value="0" checked="checked">Black and White</input>
-              <input type="radio" name="colors" value="1">Rainbow</input>
-              <input type="radio" name="colors" value="2">Blue</input>
-              <br><br>
+
               <div>
               <button class="buttons" id="start-button" >Visualize!</button> 
               
