@@ -8,7 +8,6 @@ var cutoff = 150;
 var colors = [];
 // color type, value comes from inpute field on HTML page
 var type = 0;
-var dur;
 
 // var Spotify = require('spotify-web-api-js');
 // var s = new Spotify();
@@ -111,7 +110,7 @@ function Draw() {
 	    	canvasContext.fillStyle = 'rgb(' + (Math.floor((barHeight/HEIGHT)*255)) + ', ' +(Math.floor((barHeight/HEIGHT)*255)) + ', ' + (Math.floor((barHeight/HEIGHT)*255)) +')';
 			x += barWidth;
 		}
-		// ProgressBar();
+		ProgressBar();
 	}
 	// type 1 is rainbow
 	else if (type == 1) {
@@ -121,7 +120,7 @@ function Draw() {
 			canvasContext.fillStyle = 'rgb(' + (Math.floor(Math.random() * 256)) + ', ' +(Math.floor(Math.random() * 256)) + ', ' + (Math.floor(Math.random() * 256)) +')';
 			x += barWidth;
 		}
-		// ProgressBar();
+		ProgressBar();
 	}
 	// type 2 is blue
 	else {
@@ -131,14 +130,13 @@ function Draw() {
 			canvasContext.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
 			x += barWidth;
 		}
-		// ProgressBar();
+		ProgressBar();
 	}
 }
 
-// function ProgressBar(){
+function ProgressBar(){
 
-// 	var currentTime = analyser.currentTime;
-// 	var duration = analyser.duration;
-// 	$('.hp_range').stop(true,true).animate({'width':(currentTime +.25)/duration*100+'%'},250,'linear');
-// 	console.log(duration)
-// }
+	var currentTime = audioContext.currentTime;
+	var duration = Math.floor(audioSourceNode.buffer.duration);
+	$('.hp_range').stop(true,true).animate({'width':(currentTime +.25)/duration*100+'%'},250,'linear');
+}
