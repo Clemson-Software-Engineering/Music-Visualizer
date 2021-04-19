@@ -16,6 +16,8 @@
  var client_id = '08bef63e8dd547ea9d326d8548ea2e6f'; // Your client id
  var client_secret = 'd24e8fe415644fdda7ec01861e7b8702'; // Your secret
  var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
+
+ var refresh_token;
  
  /**
   * Generates a random string containing numbers and letters
