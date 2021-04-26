@@ -22,7 +22,13 @@ git clone git@github.com:Clemson-Software-Engineering/Music-Visualizer.git
 
 To run this project, you need a web browser capable of handling Javascript and HTML.   
 
-*This project is currently still under development and V1 is not yet ready.*
+To run the application navigate to the src folder and run:
+
+```sh
+node spotify_api.js
+```
+
+Navigate to http://localhost:8888/ to view the website. 
 
 ## Communications Channels
 There is not yet an established community chat for this project. In the meantime, if you have questions, comments, or concerns, please email one of the admins below: 
